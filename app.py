@@ -1,4 +1,4 @@
-from configs import APP_CONFIG
+from configs import AppConfig
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from models import Base
@@ -7,10 +7,11 @@ from views import routes
 # Create the app
 app = Flask(__name__)
 
-# Configure the MysSQL database, relative to the app instance folder
-app.config['SQLALCHEMY_DATABASE_URI'] = APP_CONFIG['DATABASE_URI']
+# Set the configure object to the flask app
+app.config.from_object(AppConfig)
 
-app.register_blueprint(routes) # Register the blueprint of routes
+# Register all Blueprints
+app.register_blueprint(routes)
 
 # Initialize the db with the extension SQLAlchemy
 db = SQLAlchemy(model_class = Base)

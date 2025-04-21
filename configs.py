@@ -1,3 +1,5 @@
-APP_CONFIG = {
-    'DATABASE_URI': 'mysql+pymysql://root:fabio89carina92GC!@localhost/hairdresser_shop'
-}
+from flask import Config
+import os
+
+class AppConfig(Config):
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI')
