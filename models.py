@@ -1,4 +1,4 @@
-from configs import APP_CONFIG
+from configs import AppConfig
 from sqlalchemy import Integer, String, Double, DateTime, create_engine, ForeignKey, func
 from sqlalchemy.orm import DeclarativeBase, mapped_column, relationship
 
@@ -87,6 +87,6 @@ class ShopService(Base):
 
 if __name__ == '__main__':
     print('Creating database...')
-    engine = create_engine(APP_CONFIG['DATABASE_URI'])
+    engine = create_engine(AppConfig.SQLALCHEMY_DATABASE_URI)
     Base.metadata.create_all(bind = engine)
     print('Done')
