@@ -1,6 +1,6 @@
 
 from flask import Flask
-from src.configs import AppConfig
+from configs import AppConfig
 from src.extensions import db
 from src.shop_service.views import views as shop_service_views
 

@@ -1,8 +1,8 @@
-from src.extensions import Base
+from src.extensions import Base, db
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import mapped_column, relationship
 
-class Person(Base):
+class Person(Base, db.Model):
     __tablename__ = 'person'
 
     # Person's information
