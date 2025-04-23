@@ -18,7 +18,7 @@ def create_app(test_config=None):
         app.config.from_object(test_config)
 
     # register all blueprints
-    app.register_blueprint(shop_service_views)
+    app.register_blueprint(shop_service_views, url_prefix='/shop_service')
 
     # initialize the app with the extension SQLAlchemy
     db.init_app(app)
