@@ -1,6 +1,8 @@
+from configs import AppConfig
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, DateTime, func
+from sqlalchemy import Integer, String, DateTime, func, create_engine
 from sqlalchemy.orm import DeclarativeBase, mapped_column
+
 
 class Base(DeclarativeBase):
     id = mapped_column(Integer, primary_key=True)
@@ -15,3 +17,5 @@ class Base(DeclarativeBase):
 
 
 db = SQLAlchemy(model_class = Base)
+
+engine = create_engine(AppConfig.SQLALCHEMY_DATABASE_URI)
