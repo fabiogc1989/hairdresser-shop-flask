@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shop Service</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'bulma/bulma.css') }}">
-</head>
-<body>
-    <h1>Shop Service {{ shop_services }}</h1>
-    <div class="container">
-        <div class="columns">
-            {% for shop_service in shop_services %}
-            	<div class="column is-one-third">
-                    <div class="box">
-                        <div class="card-header">
+{% extends 'base.html' %}
 
-                        </div>
-                        <h4 class="title is-4 has-text-centered">{{ shop_service.name }}</h4>
-                        <div class="card-content">{{ shop_service.description }}</div>
-                        <div class="has-text-weight-bold has-text-centered is-uppercase"><span class="has-text-success">{{ shop_service.price }}</span> <span class="has-text-black">Eur</span></div>
+{% block title %}
+	Shop Service
+{% endblock title %}
+
+{% block content %}
+    <div class="columns is-multiline is-mobile">
+        {% for shop_service in shop_services %}
+            <div class="column is-one-third-desktop is-one-third-fullhd is-one-third-widescreen is-half-mobile is-half-tablet">
+                <div class="box">
+                    <div class="card-header">
+
                     </div>
+                    <h4 class="title is-4 has-text-centered">{{ shop_service.name }}</h4>
+                    <div class="card-content">{{ shop_service.description }}</div>
+                    <div class="has-text-weight-bold has-text-centered is-uppercase"><span class="has-text-success">{{ shop_service.price }}</span> <span class="has-text-black">Eur</span></div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
-</body>
-</html>
+{% endblock content %}

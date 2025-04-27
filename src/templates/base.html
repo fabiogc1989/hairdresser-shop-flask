@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'bulma/bulma.css') }}">
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container is-fluid">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <img src="{{ url_for('static', filename = 'svgs/project_symbol.svg') }}" alt="Project symbol" />
+                    <span class="title is-4">Hair Shop</span>
+                </a>
+                <div class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="/">Homepage</a>
+                        <a class="navbar-item" href="/shop_service">Services</a>
+                    </div>
+                    <div class="navbar-end"></div>
+                </div>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main class="container is-fluid">
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
