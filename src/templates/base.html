@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% block head %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'bulma/bulma.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'bulma/bulma.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'font-awesome/css/font-awesome.css') }}">
     {% endblock %}
 </head>
+
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="container is-fluid">
@@ -37,4 +40,5 @@
         {% endblock %}
     </main>
 </body>
+
 </html>
