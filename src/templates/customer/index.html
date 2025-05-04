@@ -5,33 +5,41 @@ Customer
 {% endblock title %}
 
 {% block content %}
-<table class="table is-striped is-fullwidth">
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>State</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Postal Code</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for customer in customers %}
-        <tr>
-            <td>{{ customer.person.first_name }}</td>
-            <td>{{ customer.person.last_name }}</td>
-            <td>{{ customer.person.phone_number }}</td>
-            <td>{{ customer.person.email }}</td>
-            <td>{{ customer.address }}</td>
-            <td>{{ customer.state }}</td>
-            <td>{{ customer.city }}</td>
-            <td>{{ customer.country }}</td>
-            <td>{{ customer.postal_code }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-    {% endblock content %}
+<div class="table-container">
+    <table class="table is-striped is-fullwidth">
+        <thead>
+            <tr>
+                <th>Person Name</th>
+                <th>Contacts</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Postal Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.person.full_name() }}</td>
+                <td>
+                    <dl class="is-block">
+                        <dt class="is-inline-block">
+                            <i class="fa fa-phone"></i>
+                        </dt>
+                        <dd class="is-inline-block">{{ customer.person.phone_number }}</dd>
+                    </dl>
+                    <dl class="is-block">
+                        <dt class="is-inline-block">
+                            <i class="fa fa-envelope"></i>
+                        </dt>
+                        <dd class="is-inline-block">{{ customer.person.email }}</dd>
+                    </dl>
+                </td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.city }}, {{ customer.state }}, {{ customer.country }}</td>
+                <td>{{ customer.postal_code }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
