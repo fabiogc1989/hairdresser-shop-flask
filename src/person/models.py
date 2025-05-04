@@ -1,8 +1,9 @@
-from src.extensions import Base, db
+from src.extensions import Base
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import mapped_column, relationship
+from src.user.models import User
 
-class Person(Base, db.Model):
+class Person(Base):
     __tablename__ = 'person'
 
     # Person's information
@@ -17,4 +18,44 @@ class Person(Base, db.Model):
     user_id = mapped_column(ForeignKey('user.id'))
 
     # Relationships
-    user = relationship('User', back_populates='person')
+    user = relationship(User, back_populates='person')
+    customers = relationship('Customer', back_populates='person', uselist=True)
+    employees = relationship('Employee', back_populates='person', uselist=True)
+
+    def full_name(self):
+        """Return the full name of the person."""
+        return f'{self.first_name} {self.last_name}'
+
+
+class Customer(Base):
+    __tablename__ = 'customer'
+
+    # Customer's address
+    address = mapped_column(String(256))
+    state = mapped_column(String(256))
+    city = mapped_column(String(256))
+    country = mapped_column(String(90))
+    postal_code = mapped_column(String(18), nullable=False)
+
+    # Foreign key
+    person_id = mapped_column(ForeignKey('person.id'))
+
+    # Relationships
+    person = relationship('Person', back_populates='customers')
+
+
+class Employee(Base):
+    __tablename__ = 'employee'
+
+    # Employee's address
+    address = mapped_column(String(256), nullable=False)
+    state = mapped_column(String(256), nullable=False)
+    city = mapped_column(String(256), nullable=False)
+    country = mapped_column(String(90), nullable=False)
+    postal_code = mapped_column(String(18), nullable=False)
+
+    # Foreign key
+    person_id = mapped_column(ForeignKey('person.id'))
+
+    # Relationships
+    person = relationship('Person', back_populates='employees')

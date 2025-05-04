@@ -1,7 +1,7 @@
 from typing import List
 from sqlalchemy import ScalarResult, select
 from src.extensions import db
-from src.person.customer.models import Customer
+from src.person.models import Customer
 
 def get_customers() -> ScalarResult[List[Customer]]:
     return db.session.execute(select(Customer)).scalars()
