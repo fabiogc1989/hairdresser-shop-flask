@@ -14,14 +14,6 @@ class Person(Base):
     phone_number = mapped_column(String(26), nullable=False)
     email = mapped_column(String(254))
 
-    # Foreign key
-    user_id = mapped_column(ForeignKey('user.id'))
-
-    # Relationships
-    user = relationship(User, back_populates='person')
-    customers = relationship('Customer', back_populates='person', uselist=True)
-    employees = relationship('Employee', back_populates='person', uselist=True)
-
     def full_name(self):
         """Return the full name of the person."""
         return f'{self.first_name} {self.last_name}'
@@ -41,7 +33,7 @@ class Customer(Base):
     person_id = mapped_column(ForeignKey('person.id'))
 
     # Relationships
-    person = relationship('Person', back_populates='customers')
+    person = relationship('Person')
 
 
 class Employee(Base):
@@ -58,4 +50,4 @@ class Employee(Base):
     person_id = mapped_column(ForeignKey('person.id'))
 
     # Relationships
-    person = relationship('Person', back_populates='employees')
+    person = relationship('Person')
