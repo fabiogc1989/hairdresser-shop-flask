@@ -6,3 +6,14 @@ from src.person.customer import views
 def index():
     customers = services.get_customers()
     return render_template('customer/index.html', customers=customers)
+
+@views.route('/<int:id>', methods=['DELETE'])
+def delete_customer(id: int):
+    """Delete a customer by ID."""
+    customer = services.get_customer_by_id(id)
+    if not customer:
+        pass
+    if services.delete_customer_by_id(id):
+        return f'The customer {customer.full_name()} has been deleted successfully.'
+    else:
+        return f'The customer {customer.full_name()} could not be deleted.'
