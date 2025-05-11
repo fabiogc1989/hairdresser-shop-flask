@@ -8,18 +8,7 @@ class BulmaModal {
 
         this.#renderModal();
 
-        this.deleteButton = this.modal.querySelector('.delete') || this.modal.querySelector(this.options.deleteButtonSelector);
-        this.closeButton = this.modal.querySelector('.modal-close') || this.model.querySelector(this.options.closeButtonSelector);
-        this.cancelButton = this.modal.querySelector('.cancel-button') || this.modal.querySelector(this.options.cancelButtonSelector);
-        if (this.deleteButton) {
-            this.deleteButton.addEventListener('click', () => this.close());
-        }
-        if (this.closeButton) {
-            this.closeButton.addEventListener('click', () => this.close());
-        }
-        if (this.cancelButton) {
-            this.cancelButton.addEventListener('click', () => this.close());
-        }
+        this.#createEventListeners();
     }
 
     open() {
@@ -31,6 +20,13 @@ class BulmaModal {
     }
 
     #renderModal() {
+        this.modalBackground = this.modal.querySelector('.modal-background');
+        if (!this.modalBackground) {
+            this.modalBackground = document.createElement('div');
+            this.modalBackground.className = 'modal-background';
+            this.modal.appendChild(this.modalBackground);
+        }
+
         if (Object.hasOwn(this.options, 'title') && this.options.title) {
             let modalCard = this.modal.querySelector('.modal-card');
             if (!modalCard) {
@@ -62,6 +58,11 @@ class BulmaModal {
                 closeButton.setAttribute('aria-label', 'close');
                 modalCardHead.appendChild(closeButton);
             }
+
+            let closeModalButton = this.modal.querySelector('.modal-close');
+            if (closeModalButton) {
+                closeModalButton.remove();
+            }
         }
 
         if (Object.hasOwn(this.options, 'contentHTML') && this.options.contentHTML) {
@@ -84,6 +85,24 @@ class BulmaModal {
             if (contentElement) {
                 contentElement.remove();
             }
+        }
+    }
+
+    #createEventListeners() {
+        if (this.options.backgroundClickable)
+            this.modalBackground.addEventListener('click', () => this.close());
+
+        this.deleteButton = this.modal.querySelector('.delete');
+        this.closeButton = this.modal.querySelector('.modal-close');
+        this.cancelButton = this.modal.querySelector('.cancel-button');
+        if (this.deleteButton) {
+            this.deleteButton.addEventListener('click', () => this.close());
+        }
+        if (this.closeButton) {
+            this.closeButton.addEventListener('click', () => this.close());
+        }
+        if (this.cancelButton) {
+            this.cancelButton.addEventListener('click', () => this.close());
         }
     }
 }

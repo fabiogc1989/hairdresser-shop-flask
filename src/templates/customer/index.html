@@ -6,7 +6,7 @@ Customer
 
 {% block content %}
 <button class="button is-primary"
-    onclick="javascript:new BulmaModal('modal-test',{ title: 'My Modal Test', contentHTML: '<p>Fabio Coimbra</p>' }).open()">Modal
+    onclick="javascript:new BulmaModal('modal_delete_customer',{ title: 'My Modal Test', contentHTML: '<p>Fabio Coimbra</p>', backgroundClickable: false }).open()">Modal
     test</button>
 <div class="table-container">
     <table class="table is-striped is-fullwidth">
@@ -45,11 +45,5 @@ Customer
         </tbody>
     </table>
 </div>
-<div id="modal-test" class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-        <p>Test</p>
-    </div>
-    <button class="modal-close is-large" aria-label="close"></button>
-</div>
+<div id="modal_delete_customer" class="modal"></div>
 {% endblock content %}
