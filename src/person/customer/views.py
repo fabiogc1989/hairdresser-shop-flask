@@ -7,6 +7,11 @@ def index():
     customers = services.get_customers()
     return render_template('customer/index.html', customers=customers)
 
+
+@views.route('/create', methods=['GET', 'POST'])
+def create_customer():
+    return render_template('customer/create.html')
+
 @views.route('/<int:id>', methods=['DELETE'])
 def delete_customer(id: int):
     """Delete a customer by ID."""
